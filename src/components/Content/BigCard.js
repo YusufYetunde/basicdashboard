@@ -2,7 +2,7 @@ import { Button } from "@chakra-ui/button";
 import { Heading, HStack, Text, Box } from "@chakra-ui/layout";
 
 
-export default ({ title, balance, balance2, income, expense }) => {
+const BigCard = ({ title, balance, balance2, income, expense }) => {
   return (
     <Box p={8} borderRadius="3xl" bg="#5D4E7B" textColor="white">
       <Text textTransform="uppercase" fontSize="xs" fontWeight="bold">
@@ -39,3 +39,5 @@ export default ({ title, balance, balance2, income, expense }) => {
     </Box>
   );
 };
+
+export default BigCard

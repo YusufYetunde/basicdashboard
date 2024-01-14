@@ -1,7 +1,7 @@
 import { Text, Stack, Heading, Spacer, Flex, Box } from "@chakra-ui/layout";
 import { FiArrowDown, FiArrowUp } from "react-icons/fi";
 
-export default () => {
+const Transactions = () => {
   const Item = ({ icon, title, date, amount, isSent }) => (
     <Box>
       <Flex>
@@ -55,3 +55,4 @@ export default () => {
     </Box>
   );
 };
+export default Transactions;

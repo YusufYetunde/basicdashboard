@@ -1,7 +1,7 @@
 import { Text ,Stack, Heading, Spacer, Flex, Box} from "@chakra-ui/layout";
 import { Switch } from "@chakra-ui/switch";
 
-export default () => {
+const Security = () => {
   const Item = ({ title, subtitle, enabled }) => (
     <Flex p={4} borderWidth="1px" borderRadius="lg" alignItems="center">
       <Box textColor="gray">
@@ -35,3 +35,4 @@ export default () => {
     </Box>
   );
 };
+export default Security;

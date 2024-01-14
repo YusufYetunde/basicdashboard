@@ -4,7 +4,7 @@ import { FaViacoin } from "react-icons/fa6";
 import { ImCoinYen } from "react-icons/im";
 import { FaLitecoinSign } from "react-icons/fa6";
 
-export default () => {
+const Wallets = () => {
   const Wallet = ({
     icon,
     title,
@@ -105,3 +105,5 @@ export default () => {
     </Box>
   );
 };
+
+export default Wallets;

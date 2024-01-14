@@ -18,7 +18,7 @@ useColorModeValue } from "@chakra-ui/react";
 import { FiBell, FiSearch, FiSettings } from "react-icons/fi";
 import { ItemContent } from './Content/itemContent';
 
-export default () => {
+const Header = () => {
   const [isSearchOpen, setSearchOpen] = useState(false);
 
   const onSearchClick = () => {
@@ -40,7 +40,7 @@ export default () => {
 
 
   return (
-    <Box py={8} ml={{ base: 1, md: 20 }} mr={{base: 1, md: 40 }}>
+    <Box py={8} ml={{ base: 1, md: 20 }} mr={{base: 1, md: 32 }}>
       <Flex>
         <Image src="/assets/logo.png" w={16} />
         <Spacer />
@@ -58,6 +58,7 @@ export default () => {
               placeholder="Search..."
               size="sm"
               borderRadius="full"
+              shadow={shadow}
               onBlur={closeSearchInput}
               onChange={handleSearchInputChange}
               autoFocus
@@ -162,3 +163,4 @@ export default () => {
     </Box>
   );
 };
+export default Header;

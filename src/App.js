@@ -16,11 +16,11 @@ function App() {
         <Sidebar />
 
         {/* Main Content */}
-        <Container maxW="100%" ml={{ base: 2, md: 16 }} mr={{ base: 2, md: 16 }}>
+        <Container maxW="100%" ml={{ base: 2, md: 16 }} mr={{ base: 2, md: 10}}>
           <SimpleGrid columns={{ base: 1, md: 8 }} gap={6}>
             <GridItem colSpan={5} rowGap={8}>
             <Flex direction={{ base: "column", md: "row" }}> {/* firstbox */}
-                <GridItem colSpan={{ base: 1, md: 7 }} mr={{ base: 0, md: 6 }}> {/* Adjusted colSpan and added margin */}
+                <GridItem colSpan={{ base: 1, md: 7 }} mr={{ base: 0, md: 6 }}> 
                   {/* the card box */}
                   <BigCard />
                 </GridItem>

@@ -3,7 +3,7 @@ import { RiHomeLine, RiPieChart2Fill, RiShareBoxFill } from "react-icons/ri";
 import { IconButton } from "@chakra-ui/button";
 import { FiPlus } from "react-icons/fi";
 
-export default () => {
+const Sidebar = () => {
   const Item = ({ icon, active }) => (
     <Box
       _hover={{ cursor: "pointer" }}
@@ -39,3 +39,4 @@ export default () => {
   );
 };
 
+export default Sidebar;
