@@ -1,29 +1,25 @@
 import { useState } from 'react';
 import { Avatar } from "@chakra-ui/avatar";
 import { Image } from "@chakra-ui/image";
-import { Spacer, HStack, Flex, Box, Text, VStack, Badge, Popover, PopoverTrigger, PopoverContent, PopoverArrow,
-  PopoverCloseButton,
-  PopoverHeader, 
-  PopoverBody,
-  PopoverFooter,
-  Portal,
+import { Spacer,
+  HStack,
+  Flex,
+  Box,
+  Text,
+  Badge,
+  Icon,
   IconButton,
   Input,
 Menu,
 MenuButton,
 MenuList,
-MenuItem } from "@chakra-ui/react";
+MenuItem,
+useColorModeValue } from "@chakra-ui/react";
 import { FiBell, FiSearch, FiSettings } from "react-icons/fi";
-import { IoMdArrowDropdown } from 'react-icons/io'
+import { ItemContent } from './Content/itemContent';
 
 export default () => {
-  const [isNotificationOpen, setNotificationOpen] = useState(false);
   const [isSearchOpen, setSearchOpen] = useState(false);
-
-  const onBellClick = () => {
-    // Set the state to open/close the notification box
-    setNotificationOpen(!isNotificationOpen);
-  };
 
   const onSearchClick = () => {
     setSearchOpen(!isSearchOpen);
@@ -37,16 +33,11 @@ export default () => {
     setSearchOpen(false);
   };
 
-  const handleProfileMenuClick = (action) => {
-    // Handle actions such as logout, etc.
-    console.log(`Performing ${action}`);
-  };
+  const shadow = useColorModeValue(
+		'14px 17px 40px 4px rgba(112, 144, 176, 0.18)',
+		'14px 17px 40px 4px rgba(112, 144, 176, 0.06)'
+	);
 
-  //notifications data
-  const notifications = [
-    { id: 1, text: 'John Doe liked your post.', time: '2 hours ago' },
-    { id: 2, text: 'Jane Doe commented on your photo.', time: '1 day ago' },
-  ];
 
   return (
     <Box py={8} ml={{ base: 1, md: 20 }} mr={{base: 1, md: 40 }}>
@@ -73,78 +64,99 @@ export default () => {
             />
           )}
           {/* Notification Bell */}
-          <Popover isOpen={isNotificationOpen} onClose={() => setNotificationOpen(false)}>
-            <PopoverTrigger>
-              <Box position="relative" cursor="pointer">
-                <FiBell onClick={onBellClick} />
-                {/* Badge for unread notifications */}
-                <Badge
-                  position="absolute"
-                  top="-1"
-                  right="-3"
-                  fontSize="xs"
-                  colorScheme="red"
-                  borderRadius="full"
-                  px="2"
-                >
-                  5 {/* Replace with the actual count of unread notifications */}
-                </Badge>
-              </Box>
-            </PopoverTrigger>
-            <Portal>
-            <PopoverContent
-              bg="white"
-              boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
-              borderRadius="md"
-              borderWidth={0}
-              p={4}
-              w="300px"
-            >
-              <PopoverArrow />
-              <PopoverCloseButton />
-              <PopoverHeader fontWeight="bold" mb={2}>
-                Notifications
-              </PopoverHeader>
-              <PopoverBody>
-                {/* Content of the notification dropdown */}
-                <VStack align="start" spacing={2}>
-                  {notifications.slice(0, 2).map((notification) => (
-                    <Flex key={notification.id} align="center">
-                      <Avatar size="sm" src="https://placekitten.com/40/40" mr={2} />
-                      <VStack align="start">
-                        <Text fontWeight="semibold">{notification.text}</Text>
-                        <Text fontSize="sm" right="0" color="gray.500">{notification.time}</Text>
-                      </VStack>
-                    </Flex>
-                  ))}
-                  {/* Separator */}
-                  <Box borderTop="1px solid" borderColor="gray.200" my={2} />
-                  {/* See More link */}
-                  <Text color="blue.500" fontWeight="bold" cursor="pointer">
-                    See More
-                  </Text>
-                </VStack>
-              </PopoverBody>
-              <PopoverFooter>
-                {/* Additional footer content if needed */}
-              </PopoverFooter>
-            </PopoverContent>
-            </Portal>
-          </Popover>
+          <Menu>
+				<MenuButton p="0px">
+          <Box position="relative" cursor="pointer">
+          <Icon mt="6px" as={FiBell} color="gray-300" w="18px" h="18px" me="10px"
+          />
+          <Badge
+          position="absolute"
+          top="-1"
+          right="-1"
+          fontSize="xs"
+          colorScheme="red"
+          borderRadius="full"
+          px="2"
+          >
+          5 
+          </Badge>
+          </Box>
+				</MenuButton>
+				<MenuList
+					boxShadow="md"
+					p="20px"
+					borderRadius="20px"
+					bg="white"
+					border="none"
+					mt="22px"
+					me={{ base: '30px', md: 'unset' }}
+					minW={{ base: 'unset', md: '400px', xl: '450px' }}
+					maxW={{ base: '360px', md: 'unset' }}>
+					<Flex jusitfy="space-between" w="100%" mb="20px">
+						<Text fontSize="md" fontWeight="600" color="gray.700">
+							Notifications
+						</Text>
+						<Text fontSize="sm" fontWeight="500" color="gray.700" ms="auto" cursor="pointer">
+							Mark all read
+						</Text>
+					</Flex>
+					<Flex flexDirection="column">
+						<MenuItem _hover={{ bg: 'none' }} _focus={{ bg: 'none' }} px="0" borderRadius="8px" mb="10px">
+							<ItemContent info="Dashboard Trial" aName="John Doe" />
+						</MenuItem>
+						<MenuItem _hover={{ bg: 'none' }} _focus={{ bg: 'none' }} px="0" borderRadius="8px" mb="10px">
+							<ItemContent info="Chakra UI Design" aName="Mary Jane" />
+						</MenuItem>
+					</Flex>
+				</MenuList>
+			</Menu>
           <FiSettings />
           {/* Profile Avatar with Dropdown Menu */}
           <Menu>
-            <MenuButton as={IconButton} icon={
-            <Avatar size="sm" 
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY4MTg1ODE1Ng&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080" />} 
-            variant="ghost">
-              <IoMdArrowDropdown />
-            </MenuButton>
-            <MenuList>
-              <MenuItem onClick={() => handleProfileMenuClick('Profile')}>Profile</MenuItem>
-              <MenuItem onClick={() => handleProfileMenuClick('Logout')}>Logout</MenuItem>
-            </MenuList>
-          </Menu>
+				<MenuButton p="0px">
+					<Avatar
+						_hover={{ cursor: 'pointer' }}
+						color="white"
+						name="jOHN doe"
+						bg="#11047A"
+						size="sm"
+						w="40px"
+						h="40px"
+					/>
+				</MenuButton>
+				<MenuList boxShadow={shadow} p="0px" mt="10px" borderRadius="20px" bg="white" border="none">
+					<Flex w="100%" mb="0px">
+						<Text
+							ps="20px"
+							pt="16px"
+							pb="10px"
+							w="100%"
+							borderBottom="1px solid"
+							borderColor="#e6ecfa"
+							fontSize="sm"
+							fontWeight="700"
+							color="gray.700">
+							👋&nbsp; Holla, John
+						</Text>
+					</Flex>
+					<Flex flexDirection="column" p="10px">
+						<MenuItem _hover={{ bg: 'none' }} _focus={{ bg: 'none' }} borderRadius="8px" px="14px">
+							<Text fontSize="sm">Profile</Text>
+						</MenuItem>
+						<MenuItem _hover={{ bg: 'none' }} _focus={{ bg: 'none' }} borderRadius="8px" px="14px">
+							<Text fontSize="sm">Newsletter</Text>
+						</MenuItem>
+						<MenuItem
+							_hover={{ bg: 'none' }}
+							_focus={{ bg: 'none' }}
+							color="red.400"
+							borderRadius="8px"
+							px="14px">
+							<Text fontSize="sm">Log out</Text>
+						</MenuItem>
+					</Flex>
+				</MenuList>
+			</Menu>
         </HStack>
       </Flex>
     </Box>
