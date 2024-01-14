@@ -49,7 +49,7 @@ export default () => {
   ];
 
   return (
-    <Box py={8} mx={{ base: 1, md: 20 }}>
+    <Box py={8} ml={{ base: 1, md: 20 }} mr={{base: 1, md: 40 }}>
       <Flex>
         <Image src="/assets/logo.png" w={16} />
         <Spacer />
@@ -136,7 +136,7 @@ export default () => {
           <Menu>
             <MenuButton as={IconButton} icon={
             <Avatar size="sm" 
-            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />} 
+            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY4MTg1ODE1Ng&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080" />} 
             variant="ghost">
               <IoMdArrowDropdown />
             </MenuButton>
